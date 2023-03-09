@@ -1,10 +1,20 @@
 from unittest import loader
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from .models import Member
+from .models import *
 
 # Create your views here.
 def home(request):
+    customer=Customer.objects.filter(id=1)
+    order,create=Order.objects.get_or_create(customer=customer,
+                                             complete=False)
+    #items=order.orderitem_set.all()
+    
+    ###
+    print("#############")
+    print(customer)
+    print(order.get_all_sum)
+    print("#############")
     return render(request,'polls/post/home.html')
 
 def login(request):

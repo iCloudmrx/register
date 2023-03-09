@@ -10,3 +10,9 @@ def post(request):
         {
             'posts':posts,
         })
+    
+def post_detail(request,slug):
+    poss_de=Post.objects.filter(slug__iexact=slug)
+    return render(request,
+                  'blog/post/post_detail.html',
+                  {'post':poss_de})
